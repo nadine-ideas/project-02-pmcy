@@ -1,0 +1,276 @@
+Esta é a representação do mapa mental da arquitetura de integração solicitada pelo cliente Pamcary, transformada em uma página HTML visual.
+
+Para manter a integridade das citações e a visualização dentro do ambiente HTML/CSS, utilizei `sup` tags para os números das fontes e criei âncoras (`<a href="#src-i">`) simuladas que direcionam para a seção de Referências Técnicas no final do documento, onde cada fonte é listada.
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental da Arquitetura de Integração PAMCARY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .mindmap {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            border-left: 3px solid #007bff;
+        }
+        .node {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+        }
+        .central-node {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            width: auto;
+        }
+        .branch-header {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2em;
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .sub-branch {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin-left: 20px;
+            margin-top: 5px;
+            padding: 10px;
+        }
+        .sub-sub-branch {
+            background-color: #e9ecef;
+            border-left: 3px solid #ffc107;
+            margin-left: 40px;
+            margin-top: 5px;
+            padding: 8px;
+            font-size: 0.9em;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .citation {
+            font-size: 0.7em;
+            vertical-align: super;
+            margin-left: 3px;
+        }
+        .references {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mindmap">
+        <div class="central-node">
+            Arquitetura de Integração PAMCARY: Foco no RD Station CRM (RD)
+        </div>
+
+        <!-- RAMO 1: SISTEMAS DE NEGÓCIO ENVOLVIDOS -->
+        <div class="node branch-header">
+            1. Sistemas Principais Integrados (Front-end de Vendas) <span class="citation"><a href="#refs"></a></span>
+        </div>
+        
+        <div class="node sub-branch">
+            <strong>RD Station CRM (RD)</strong>
+            <div class="sub-sub-branch">
+                Principal Front-end de Vendas <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Foco em expansão para novas diretorias: DICOM II e DICOM IV <span class="citation"><a href="#refs"></a></span> (Regionais - Curitiba, Blumenau, Porto Alegre, Belo Horizonte, Goiânia, Rio de Janeiro e Vitória) <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Pipelines/Funis configurados para DICOM 1 (Vendas Transportes - SEDEG) e DICOM I (Caminhão - GEAVE) <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+
+        <div class="node sub-branch">
+            <strong>CRM Web</strong> (Sistema Interno da Pamcary)
+            <div class="sub-sub-branch">
+                Integração via API com o RD CRM <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Recebe dados do funil de <strong>Transportes (SEDEG)</strong> <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                A integração <strong>não segmenta por filial</strong> atualmente <span class="citation"><a href="#refs"></a></span>, olhando para o prefixo "Vendas Transportes" <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                O GCOM (Responsável no RD) é associado a um código de Hierarquia e um código de pessoa no CRM Web <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+
+        <div class="node sub-branch">
+            <strong>Quiver</strong> (Sistema Externo de Gerenciamento de Apólices)
+            <div class="sub-sub-branch">
+                Integração via API com o RD CRM, usada para o funil **Caminhão (GEAVE)** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Após preenchimento de campos obrigatórios no RD (na etapa de Cotação), um **orçamento é aberto automaticamente no Quiver** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                O Quiver retorna o status de Ganho/Perdido para o RD <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+
+        <div class="node sub-branch">
+            <strong>SIGS</strong> (Sistema de Geração de Propostas)
+            <div class="sub-sub-branch">
+                Sistema interno gerador de propostas personalizadas, usado no fluxo de Transportes <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                A comunicação direta entre RD e SIGS é vista como uma <strong>ideia de futuro</strong> <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+        
+        <!-- RAMO 2: CAMADA DE INTEGRAÇÃO E ARQUITETURA TÉCNICA -->
+        <div class="node branch-header">
+            2. Camada de Integração e Automação (Middleware)
+        </div>
+
+        <div class="node sub-branch">
+            <strong>API/Comunicação</strong>
+            <div class="sub-sub-branch">
+                A integração hoje é feita via API, construída por uma consultoria externa <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Padrão de desenvolvimento de serviços: **Java 17, SpringBoot** <span class="citation"><a href="#refs"></a></span>, utilizando padrão **REST** (com verbos GET, POST, PUT, DELETE, etc.) <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Fase 3 do projeto prevê a Implementação de <strong>até 3 APIs e plugins</strong> <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+        
+        <div class="node sub-branch">
+            <strong>Intermediação de Dados (Objetivo: Eliminar DE/PARA Manual)</strong> <span class="citation"><a href="#refs"></a></span>
+            <div class="sub-sub-branch">
+                Discute-se o uso de **iPaaS** (Integration Platform as a Service) <span class="citation"><a href="#refs"></a></span> ou ferramentas como **N8N** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Pode ser utilizado o **banco de dados da Pamcary (Postgre)** como "passagem para integração dos dados" <span class="citation"><a href="#refs"></a></span>. O banco de dados do BFF é **DB2** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+
+        <div class="node sub-branch">
+            <strong>Segurança e Acessos</strong>
+            <div class="sub-sub-branch">
+                Autenticação via **MAAS** e **Keycloak** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Acesso para desenvolvedores (ex: Diogo) pode ser liberado via **VPN** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+
+        <!-- RAMO 3: REGRAS DE NEGÓCIO E MUDANÇAS -->
+        <div class="node branch-header">
+            3. Ajustes de Dados Críticos (DE/PARA)
+        </div>
+
+        <div class="node sub-branch">
+            O objetivo é permitir que o usuário cadastre novos itens <strong>apenas no RD</strong> e a integração faça a conversão automática para o código do sistema alvo <span class="citation"><a href="#refs"></a></span>.
+            <div class="sub-sub-branch">
+                **Hierarquia (Responsável/GCOM):** Usado para integração com **CRM Web** <span class="citation"><a href="#refs"></a></span>. Atualmente depende da tabela `trds_depara_crm_hierarquia` <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                **Campanha:** Usado para integração com **Quiver** (Funil Caminhão) <span class="citation"><a href="#refs"></a></span>. Depende da tabela `trds_depara_crm_campanha` <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                **Motivo de Perda:** Usado para retroalimentação do **Quiver para o RD** <span class="citation"><a href="#refs"></a></span>. Depende da tabela `trds_depara_crm_mot_perda` <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                <strong>Necessidade de Inclusão de Campos:</strong> Sugerido incluir **diretoria** e **filial** nas tabelas de DE/PARA para evitar erros de duplicidade (ex: Glauco é Vitória e Rio) <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+        
+        <div class="node sub-branch">
+            <strong>Campos Personalizados (CP)</strong>
+            <div class="sub-sub-branch">
+                CPs (como endereço, CNPJ) são criados no RD para seguir a ordem e o <strong>formato de integração com o CRM Web</strong> <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                Funcionalidades como puxar endereço completo via Google Maps não podem ser usadas, pois **impactam a integração com o CRM Web** <span class="citation"><a href="#refs"></a></span>.
+            </div>
+            <div class="sub-sub-branch">
+                O campo CP é atrelado à <strong>Empresa</strong>, e não à Negociação, o que gera a necessidade de cadastrar manualmente os dados em novos negócios, sendo um "trabalho manual, repetitivo" <span class="citation"><a href="#refs"></a></span>.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- REFERÊNCIAS -->
+    <div class="references" id="refs">
+        <h2>Referências Técnicas</h2>
+        <p>A numeração abaixo corresponde às fontes citadas no mapa mental:</p>
+        <p><strong></strong> Excerpts from "Modelo_Arquitetura_Pamcary.pdf" (Arquitetura - Fluxo, Segurança MAAS/Keycloak)</p>
+        <p><strong></strong> Excerpts from "Modelo_Arquitetura_Pamcary.pdf" (Arquitetura - Componentes: Keycloak)</p>
+        <p><strong></strong> Excerpts from "Modelo_Arquitetura_Pamcary.pdf" (HTTP STATUS CODE)</p>
+        <p><strong></strong> Excerpts from "Modelo_Arquitetura_Pamcary.pdf" (Arquitetura - Componentes BackEnd For Front(APIs): Java 17, SpringBoot, DB2)</p>
+        <p><strong></strong> Excerpts from "Modelo_Arquitetura_Pamcary.pdf" (Dependências API: Java 17, SpringBoot, Postgree)</p>
+        <p><strong></strong> Excerpts from "Pamcary_Contrato_-_8DHubify_.pdf" (Fases 1, 2 e 3: Integrações CRM Web e Quiver, iPaaS, 3 APIs)</p>
+        <p><strong></strong> Excerpts from "Pamcary_Contrato_-_8DHubify_.pdf" (Kickoff e Expansão faseada: Diretoria 2 e 4)</p>
+        <p><strong></strong> Excerpts from "Pamcary_Contrato_-_8DHubify_.pdf" (Criação de Equipes, Funil Transporte - CRM Web)</p>
+        <p><strong></strong> Excerpts from "Pamcary_Contrato_-_8DHubify_.pdf" (Configuração de Pipelines)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Ajustes Playbook..." (Campos CP atrelado à empresa, não negociação)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento..." (Campos Campanha, Motivo de Perda, Hierarquia e necessidade de automatização)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento..." (Intermediador N8N)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento..." (Sugestão de cadastrar apenas no RD e modelar via integração)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento/Ajustes CRM..." (Priorização DICOM 2 e 4, Desafio Glauco/Filial, Nomenclatura)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento/Ajustes CRM..." (Integração fixa para "vendas transporte", não segmenta por filial)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento/Ajustes CRM..." (Necessidade de testar/preparar integração para novos funis)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento/Ajustes CRM..." (Necessidade de campo diretoria e filial no depara)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (Pontos de Kickoff: Problemas com campanha/código, Responsável/Hierarquia, N8N, Funil/Sufixo)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (Nomenclaturas: DICOM I, Regionais/DICOM II e IV)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (Propostas SIGS, Integração/API externa, Prazo 60d/Integração)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (DE/PARA Hierarquia SEDEG/Transporte, Integração RD/CRM Web)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (Integração funis por sufixo "Vendas Transportes")</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (DE/PARA Hierarquia GEAVE/Caminhão)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (DE/PARA Campanha GEAVE/Caminhão, Integração RD/Quiver)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (DE/PARA Motivo de Perda GEAVE/Caminhão, Integração Quiver/RD)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Bloco de Notas" (Uso de banco da Pamcary como passagem)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Discovery Caminhão..." (Geração de proposta no SIGS - Transporte)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (Necessidade de tirar a manipulação manual da tabela DE/PARA)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (CRM Web Interno, Integração via API de consultoria externa)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (Exemplo DE/PARA Responsável RD para GCOM/Hierarquia CRM Web)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (Detalhe da Hierarquia: nome vira código de hierarquia + código da pessoa)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (Acesso a documentação das APIs e regras de negócio)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (Hierarquia: GCOM no CRM Web são dois códigos - coluna I e H)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off..." (Acesso via VPN para desenvolvedores)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Agenda de Kick-Off #2..." (CPs em negociação vs. empresa gera retrabalho manual)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Apresentação BPMN..." (SIGS é o gerador da proposta)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Apresentação BPMN..." (Comunicação RD/SIGS é questão de futuro)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Discovery Caminhão..." (Quiver: Campos obrigatórios para integração, abre orçamento automaticamente)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Discovery Caminhão..." (Quiver retorna o status de vendido/perdido para o RD)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Discovery Caminhão..." (Andamento do processo continua no Quiver - similar ao SIGS)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento - Transcrição" (Motivo de Perda: Campo do RD)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento - Transcrição" (Campanha: Criar no Quiver e manual na tabela, objetivo: automatizar)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento - Transcrição" (Hierarquia: Cadastro manual na tabela, ideia é dar autonomia para cadastrar no RD e usar banco próprio como intermediador)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Alinhamento - Transcrição" (Tabela no RD, passa por Banco de Dados/iPaaS/N8N para integrar com CRM Web)</p>
+        <p><strong></strong> Excerpts from "[Pamcary] Ajustes Playbook - Transcrição" (CPs em ordem para integração com CRM Web; Google Maps impacta a integração)</p>
+    </div>
+
+</body>
+</html>
+```
